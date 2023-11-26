@@ -1,11 +1,11 @@
 import NavBar from "./comp/nav";
 import PortPoint from "./comp/port";
-import TestBar from "./comp/text";
+import {TestBar,TestClass} from "./comp/text";
 
 function App() {
   return (
     <div className="">
-        <TestBar/>
+      <TestBar local="bn-BD"/>
     </div>
   );
 }

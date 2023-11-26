@@ -1,19 +1,42 @@
-import React, { useState } from 'react';
-import { twMerge } from 'tailwind-merge';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-const TestBar = () => {
-    const [name,setName] = useState(true);
-    function Bapon(){
+export const TestBar = () => {
+    setInterval(()=>{
+        const element = new Date().toLocaleTimeString();
+        ReactDOM.render(element,document.querySelector("#para"));
+    },1000)
 
-        setName(name => !name);
-    }
-    const Nariis = name ? "invisible":"visible";
     return (
         <div>
-            <button className={twMerge("bg-blue-500",)} onClick={Bapon}>Submit</button>
-            <div><p className={twMerge('bg-red-400',Nariis)} id='marko'>Bapon </p></div>
+            <p id='para'></p>
+            <p id='para2'></p>
+            <TestClass local="bn-BD"/>
         </div>
     );
 };
+export class TestClass extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            date: new Date(),
+        }
+    }
+    componentDidMount(){
+        this.clocktime = setInterval(()=>this.tick());
+    }
+    componentWillUnmount(){
+        clearInterval(this.clocktime);
+    }
+    tick(){
+        this.setState({date:new Date()});
+    }
+    render(){
+        return (
+            <div>
+                <p>{this.state.date.toLocaleTimeString(this.props.local)}</p>
+            </div>
 
-export default TestBar;
+        )
+    }
+}
