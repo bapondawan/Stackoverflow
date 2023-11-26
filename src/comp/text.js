@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 const TestBar = () => {
-    const [name,setName] = useState();
+    const [name,setName] = useState(true);
     function Bapon(){
-        setName("text-white");
+
+        setName(name => !name);
     }
+    const Nariis = name ? "invisible":"visible";
     return (
         <div>
-            <div><p className='bg-red-400$' id='marko'>bapon is a </p></div>
-            <button className='' onClick={Bapon}>Submit</button>
+            <button className={twMerge("bg-blue-500",)} onClick={Bapon}>Submit</button>
+            <div><p className={twMerge('bg-red-400',Nariis)} id='marko'>Bapon </p></div>
         </div>
     );
 };
